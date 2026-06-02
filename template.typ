@@ -1067,7 +1067,12 @@
       fill: (col, row) => if row == 0 { rgb("#f9f9fa") } else { none },
       align: (col, row) => if row == 0 { center + horizon } else { left + top },
       ..if not no-inset { (inset: (x: 10pt, y: 12pt)) },
-      table.header([*현행*], [*개정안*], [*비고*], repeat: false),
+      table.header(
+        [*현행*],
+        [*개정안*],
+        ..if not hide-remark { ([*비고*],) } else { () },
+        repeat: false
+      ),
 
       ..final-rows.flatten()
     )
